@@ -1,0 +1,10 @@
+{
+  "name": "ebury-full-stack-js-test",
+  "scripts": {
+    "start": "node -r dotenv/config ./node_modules/.bin/concurrently 'cd payment-api && ./run-payment-api.sh' 'cd backend && ./run-backend.sh' 'cd frontend && npm start'"
+  },
+  "dependencies": {
+    "concurrently": "^7.6.0",
+    "dotenv": "^16.0.3"
+  }
+}
