@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import { paymentData } from "../services/FormService";
 
 function PaymentCreate() {
   const navigate = useNavigate();
@@ -11,8 +12,11 @@ function PaymentCreate() {
     const payment = Object.fromEntries(new FormData(ev.target));
     console.log(payment);
 
-    navigate("/");
-  };
+    // Call the `paymentData` function from the `FormService` and pass the payment
+    paymentData(payment).then(() => {
+      navigate("/");
+    });
+  }
 
   return (
     <form onSubmit={submit}>

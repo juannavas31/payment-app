@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { listData } from "../services/ListService";
 
 function PaymentsList() {
-  // The list of payments is available from `GET /api/payments`
+
+  const [payments, setPayments] = useState([]);
+  listData().then((list) =>
+    setPayments(list)
+);
   return (
     <>
       <div>
@@ -19,13 +25,15 @@ function PaymentsList() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-            </tr>
+            {payments.map((payment) => (
+              <tr key={payment.id}>
+                <td>{payment.id}</td>
+                <td>{payment.name}</td>
+                <td>{payment.cardNumber}</td>
+                <td>{payment.currency}</td>
+                <td>{payment.amount}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

@@ -48,7 +48,7 @@ ALL_PAYMENTS = [
 ]
 
 def generate_unique_id(length=7):
-    chars = string.ascii_letters + string.digits
+    chars = "0123456789ABCDEFGHJKLMNPQRSTUVWXYZ"
     unique_id = ''.join(random.choice(chars) for _ in range(length))
     return unique_id
 
