@@ -16,7 +16,10 @@ class Settings(BaseSettings):
         env='UPSTREAM_REQUEST_TIMEOUT',
         default=10
     )
-
+    API_KEY: str = Field(
+        env='API_KEY',
+        default='SECRET-API-KEY'
+    )
 
 def get_settings() -> Settings:
     return Settings()
