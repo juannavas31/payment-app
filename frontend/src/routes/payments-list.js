@@ -1,13 +1,19 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { listData } from "../services/ListService";
+import { useState, useEffect } from "react";
+import { getPaymentsService } from "../services/paymentService";
 
 function PaymentsList() {
 
   const [payments, setPayments] = useState([]);
-  listData().then((list) =>
-    setPayments(list)
-);
+
+  useEffect(() => {
+    getPaymentsService().then((data) => 
+      setPayments(data)
+    ).catch((error) => {
+      console.log("Error :", error);
+    })
+  }, []);
+
   return (
     <>
       <div>

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { paymentData } from "../services/FormService";
+import { createPaymentService } from "../services/paymentService";
 
 function PaymentCreate() {
   const navigate = useNavigate();
@@ -12,25 +12,29 @@ function PaymentCreate() {
     const payment = Object.fromEntries(new FormData(ev.target));
     console.log(payment);
 
-    // Call the `paymentData` function from the `FormService` and pass the payment
-    paymentData(payment).then(() => {
-      navigate("/");
-    });
+    // Call the `createPaymentService` function from the `createPaymentService` and pass the payment
+    createPaymentService(payment)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log("Error :", error);
+      });
   }
 
   return (
     <form onSubmit={submit}>
       <div>
         <label>Name</label>
-        <input type="text" name="name" />
+        <input type="text" name="name" required/>
       </div>
       <div>
         <label>Card Number</label>
-        <input type="text" name="cardNumber" />
+        <input type="text" name="cardNumber" required/>
       </div>
       <div>
         <label>Currency</label>
-        <select name="currency">
+        <select name="currency" required>
           <option value=""></option>
           <option value="EUR">EUR</option>
           <option value="GBP">GBP</option>
@@ -39,7 +43,7 @@ function PaymentCreate() {
       </div>
       <div>
         <label>Amount</label>
-        <input type="text" name="amount" />
+        <input type="text" name="amount" required/>
       </div>
       <div>
         <button type="submit">Create</button>

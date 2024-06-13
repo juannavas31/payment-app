@@ -15,7 +15,7 @@ export const create = (opts) => {
       ) {
         console.log("Error 500")
       }
-      return Promise.reject(error?.response);
+      return Promise.reject(error.response);
     }
   );
 
