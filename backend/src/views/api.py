@@ -17,7 +17,6 @@ async def get_index():
 
 @api_router.get('/payments')
 async def get_payments(settings: Settings = Depends(get_settings)):
-    print("api-key", settings.API_KEY)
     response = requests.get(
         url=payments_url(settings),
         headers={'x-api-key': settings.API_KEY},
